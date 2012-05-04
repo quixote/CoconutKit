@@ -88,7 +88,7 @@ HLSLinkCategory(NSManagedObject_HLSExtensions)
 
 + (void)deleteAllObjectsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSArray *allObjects = [self allObjects];
+    NSArray *allObjects = [self allObjectsInManagedObjectContext:managedObjectContext];
     for (NSManagedObject *managedObject in allObjects) {
         [managedObjectContext deleteObject:managedObject];
     }
