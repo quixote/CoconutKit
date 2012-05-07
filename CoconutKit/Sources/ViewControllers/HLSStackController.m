@@ -8,7 +8,6 @@
 
 #import "HLSStackController.h"
 
-#import "HLSAnimation.h"
 #import "HLSAssert.h"
 #import "HLSContainerContent.h"
 #import "HLSLogger.h"
@@ -19,7 +18,7 @@ const NSUInteger kStackMinimalCapacity = 2;
 const NSUInteger kStackDefaultCapacity = 2;
 const NSUInteger kStackUnlimitedCapacity = NSUIntegerMax;
 
-@interface HLSStackController () <HLSAnimationDelegate>
+@interface HLSStackController ()
 
 @property (nonatomic, retain) NSMutableArray *containerContentStack;
 

@@ -57,7 +57,7 @@
  *
  * Designated initializer: init
  */
-@interface HLSActionSheet : UIActionSheet {
+@interface HLSActionSheet : UIActionSheet <UIActionSheetDelegate> {
 @private
     NSArray *m_targets;
     NSArray *m_actions;

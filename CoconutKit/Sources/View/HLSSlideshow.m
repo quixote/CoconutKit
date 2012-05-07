@@ -20,7 +20,7 @@ static const CGFloat kKenBurnsSlideshowMaxScaleFactorDelta = 0.4f;
 
 static const NSInteger kSlideshowNoIndex = -1;
 
-@interface HLSSlideshow () <HLSAnimationDelegate>
+@interface HLSSlideshow ()
 
 - (void)hlsSlideshowInit;
 

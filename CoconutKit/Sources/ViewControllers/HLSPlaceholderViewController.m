@@ -8,14 +8,13 @@
 
 #import "HLSPlaceholderViewController.h"
 
-#import "HLSAnimation.h"
 #import "HLSContainerContent.h"
 #import "HLSLogger.h"
 #import "HLSOrientationCloner.h"
 #import "NSArray+HLSExtensions.h"
 #import "UIViewController+HLSExtensions.h"
 
-@interface HLSPlaceholderViewController () <HLSAnimationDelegate>
+@interface HLSPlaceholderViewController ()
 
 - (void)hlsPlaceholderViewControllerInit;
 

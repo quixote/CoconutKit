@@ -18,7 +18,7 @@ static HLSActionSheet *s_currentActionSheet = nil;                  // weak ref 
                                                                     // sheet ownership is automatically managed behind the scenes)
 static HLSActionSheet *s_previousActionSheet = nil;                 // weak ref to action sheet which is being dismissed
 
-@interface HLSActionSheet () <UIActionSheetDelegate>
+@interface HLSActionSheet ()
 
 + (HLSActionSheet *)currentActionSheet;
 + (void)dismissCurrentActionSheetAnimated:(BOOL)animated;

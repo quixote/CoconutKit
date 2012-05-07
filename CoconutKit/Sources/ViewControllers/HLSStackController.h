@@ -6,6 +6,7 @@
 //  Copyright 2011 Hortis. All rights reserved.
 //
 
+#import "HLSAnimation.h"
 #import "HLSReloadable.h"
 #import "HLSTransitionStyle.h"
 #import "HLSViewController.h"
@@ -57,7 +58,7 @@ extern const NSUInteger kStackUnlimitedCapacity;
  *
  * Designated initializer: initWithRootViewController:capacity:
  */
-@interface HLSStackController : HLSViewController <HLSReloadable> {
+@interface HLSStackController : HLSViewController <HLSAnimationDelegate, HLSReloadable> {
 @private
     NSMutableArray *m_containerContentStack;                    // Contains HLSContainerContent objects
     NSUInteger m_capacity;

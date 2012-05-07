@@ -6,6 +6,7 @@
 //  Copyright 2010 Hortis. All rights reserved.
 //
 
+#import "HLSAnimation.h"
 #import "HLSReloadable.h"
 #import "HLSTransitionStyle.h"
 #import "HLSViewController.h"
@@ -82,7 +83,7 @@
  *
  * Designated initializer: initWithNibName:bundle:
  */
-@interface HLSPlaceholderViewController : HLSViewController <HLSReloadable> {
+@interface HLSPlaceholderViewController : HLSViewController <HLSAnimationDelegate, HLSReloadable> {
 @private
     HLSContainerContent *m_containerContent;                // Wraps the view controller added as inset
     HLSContainerContent *m_oldContainerContent;             // Retains the old inset view controller wrapper when swapping with a new one
