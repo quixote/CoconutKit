@@ -6,9 +6,7 @@
 //  Copyright (c) 2012 Hortis. All rights reserved.
 //
 
-#import "HLSURLConnection.h"
-
-@interface UIImageView (HLSURLConnection) <HLSURLConnectionDelegate>
+@interface UIImageView (HLSURLConnection)
 
 - (void)loadWithImageRequest:(NSURLRequest *)request;
 
