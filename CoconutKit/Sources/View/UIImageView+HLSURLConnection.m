@@ -24,6 +24,12 @@ static void (*s_UIImageView__willMoveToWindow_Imp)(id, SEL, id) = NULL;
 // Swizzled method implementations
 static void swizzled_UIImageView__willMoveToWindow_Imp(id self, SEL _cmd, UIWindow *window);
 
+@interface UIImageView (HLSURLConnectionPrivate)
+
++ (NSCache *)sharedImageCache;
+
+@end
+
 /**
  * Hidden internal delegate, so that the UIImageView class does not implement delegate protocols
  * itself. This avoids issues which could arise if somebody also subclasses UIImageView and
@@ -54,28 +60,34 @@ static void swizzled_UIImageView__willMoveToWindow_Imp(id self, SEL _cmd, UIWind
 
 - (void)loadWithImageRequest:(NSURLRequest *)request
 {
-    // Create the connection
-    HLSURLConnection *connection = objc_getAssociatedObject(self, s_connectionKey);
-    if (connection) {
-        [connection cancel];
+    UIImage *image = [[UIImageView sharedImageCache] objectForKey:[request URL]];
+    if (image) {
+        self.image = image;
     }
-    connection = [HLSURLConnection connectionWithRequest:request];
-    objc_setAssociatedObject(self, s_connectionKey, connection, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    // Setup the internal delegate. When this delegate gets deallocated (i.e. when the image view gets deallocated), the
-    // HLSURLConnection will automatically be cancelled
-    UIImageView_HLSExtensions_InternalDelegate *internalDelegate = [[[UIImageView_HLSExtensions_InternalDelegate alloc] init] autorelease];
-    internalDelegate.imageView = self;
-    connection.delegate = internalDelegate;
-    objc_setAssociatedObject(self, s_internalDelegateKey, internalDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
-    // The connection is scheduled with the NSRunLoopCommonModes run loop mode to allow connection events (i.e. 
-    // image assignment when the download is complete) also when scrolling occurs (which is quite common when image 
-    // views are used within table view cells)
-    [connection startWithRunLoopMode:NSRunLoopCommonModes];
-    
-    // TODO: Customizable placeholder view / image
-    self.image = nil;
+    else {
+        // Create the connection
+        HLSURLConnection *connection = objc_getAssociatedObject(self, s_connectionKey);
+        if (connection) {
+            [connection cancel];
+        }
+        connection = [HLSURLConnection connectionWithRequest:request];
+        objc_setAssociatedObject(self, s_connectionKey, connection, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        // Setup the internal delegate. When this delegate gets deallocated (i.e. when the image view gets deallocated), the
+        // HLSURLConnection will automatically be cancelled
+        UIImageView_HLSExtensions_InternalDelegate *internalDelegate = [[[UIImageView_HLSExtensions_InternalDelegate alloc] init] autorelease];
+        internalDelegate.imageView = self;
+        connection.delegate = internalDelegate;
+        objc_setAssociatedObject(self, s_internalDelegateKey, internalDelegate, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        // The connection is scheduled with the NSRunLoopCommonModes run loop mode to allow connection events (i.e. 
+        // image assignment when the download is complete) also when scrolling occurs (which is quite common when image 
+        // views are used within table view cells)
+        [connection startWithRunLoopMode:NSRunLoopCommonModes];
+        
+        // TODO: Customizable placeholder view / image
+        self.image = nil;        
+    }
 }
                              
 - (void)loadWithImageAtURL:(NSURL *)url
@@ -106,6 +118,8 @@ static void swizzled_UIImageView__willMoveToWindow_Imp(id self, SEL _cmd, UIWind
 - (void)connectionDidFinishLoading:(HLSURLConnection *)connection
 {
     UIImage *image = [UIImage imageWithData:[connection data]];
+    [[UIImageView sharedImageCache] setObject:image forKey:[connection.request URL]];
+    
     self.imageView.image = image;
 }
 
@@ -113,6 +127,19 @@ static void swizzled_UIImageView__willMoveToWindow_Imp(id self, SEL _cmd, UIWind
 {
     // TODO: Customizable placeholder image
     self.imageView.image = nil;
+}
+
+@end
+
+@implementation UIImageView (HLSURLConnectionPrivate)
+
++ (NSCache *)sharedImageCache
+{
+    static NSCache *s_instance = nil;
+    if (! s_instance) {
+        s_instance = [[NSCache alloc] init];
+    }
+    return s_instance;
 }
 
 @end
