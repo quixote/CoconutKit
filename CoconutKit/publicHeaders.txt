@@ -33,6 +33,7 @@ HLSTaskOperation+Protected.h
 HLSTextField.h
 HLSTransitionStyle.h
 HLSURLConnection.h
+HLSURLImageView.h
 HLSUserInterfaceLock.h
 HLSValidable.h
 HLSValidators.h
@@ -60,7 +61,6 @@ UIActionSheet+HLSExtensions.h
 UIColor+HLSExtensions.h
 UIControl+HLSExclusiveTouch.h
 UIImage+HLSExtensions.h
-UIImageView+HLSURLConnection.h
 UILabel+HLSDynamicLocalization.h
 UINavigationBar+HLSExtensions.h
 UIScrollView+HLSExtensions.h

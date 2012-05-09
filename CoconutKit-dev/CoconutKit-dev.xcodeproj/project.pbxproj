@@ -11,9 +11,9 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		6F17DE8C1535FC3E00A5777C /* HLSApplicationInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F17DE8B1535FC3E00A5777C /* HLSApplicationInformation.m */; };
-		6F17DE981536275A00A5777C /* UIImageView+HLSURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F17DE971536275A00A5777C /* UIImageView+HLSURLConnection.m */; };
 		6F17DE9E15369E3A00A5777C /* CoconutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F17DE9D15369E3A00A5777C /* CoconutTableViewCell.m */; };
 		6F17DEA015369E4A00A5777C /* CoconutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F17DE9F15369E4A00A5777C /* CoconutTableViewCell.xib */; };
+		6F2B8B78155A967400EF9AF1 /* HLSURLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2B8B77155A967400EF9AF1 /* HLSURLImageView.m */; };
 		6F3B05BE14BC0A0E0026F512 /* img_localized.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F3B05BC14BC0A0E0026F512 /* img_localized.png */; };
 		6F3B05CE14BC0A510026F512 /* img_localized.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F3B05C714BC0A500026F512 /* img_localized.png */; };
 		6F3B05D014BC0A510026F512 /* img_localized.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F3B05CC14BC0A510026F512 /* img_localized.png */; };
@@ -228,11 +228,11 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		6F17DE8A1535FC3E00A5777C /* HLSApplicationInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSApplicationInformation.h; sourceTree = "<group>"; };
 		6F17DE8B1535FC3E00A5777C /* HLSApplicationInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSApplicationInformation.m; sourceTree = "<group>"; };
-		6F17DE961536275A00A5777C /* UIImageView+HLSURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+HLSURLConnection.h"; sourceTree = "<group>"; };
-		6F17DE971536275A00A5777C /* UIImageView+HLSURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+HLSURLConnection.m"; sourceTree = "<group>"; };
 		6F17DE9C15369E3A00A5777C /* CoconutTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoconutTableViewCell.h; sourceTree = "<group>"; };
 		6F17DE9D15369E3A00A5777C /* CoconutTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoconutTableViewCell.m; sourceTree = "<group>"; };
 		6F17DE9F15369E4A00A5777C /* CoconutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoconutTableViewCell.xib; sourceTree = "<group>"; };
+		6F2B8B76155A967400EF9AF1 /* HLSURLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSURLImageView.h; sourceTree = "<group>"; };
+		6F2B8B77155A967400EF9AF1 /* HLSURLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSURLImageView.m; sourceTree = "<group>"; };
 		6F3B05C814BC0A500026F512 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = img_localized.png; sourceTree = "<group>"; };
 		6F3B05CD14BC0A510026F512 /* fr */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fr; path = img_localized.png; sourceTree = "<group>"; };
 		6F3B063814BC7BA60026F512 /* UIToolbar+HLSExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+HLSExtensions.h"; sourceTree = "<group>"; };
@@ -885,6 +885,8 @@
 				6FADE69314BA04A6007EE121 /* HLSTextFieldInternalDelegate.m */,
 				6FADE69414BA04A6007EE121 /* HLSTextFieldTouchDetector.h */,
 				6FADE69514BA04A6007EE121 /* HLSTextFieldTouchDetector.m */,
+				6F2B8B76155A967400EF9AF1 /* HLSURLImageView.h */,
+				6F2B8B77155A967400EF9AF1 /* HLSURLImageView.m */,
 				6FADE69614BA04A6007EE121 /* HLSValue1TableViewCell.h */,
 				6FADE69714BA04A6007EE121 /* HLSValue1TableViewCell.m */,
 				6FADE69814BA04A6007EE121 /* HLSValue2TableViewCell.h */,
@@ -893,8 +895,6 @@
 				6F7B848614CF1BD90091EE4B /* UIActionSheet+HLSExtensions.m */,
 				6F91452114CE7E6100AFA609 /* UIBarButtonItem+HLSActionSheet.h */,
 				6F91452214CE7E6100AFA609 /* UIBarButtonItem+HLSActionSheet.m */,
-				6F17DE961536275A00A5777C /* UIImageView+HLSURLConnection.h */,
-				6F17DE971536275A00A5777C /* UIImageView+HLSURLConnection.m */,
 				6FADE9F014BA3AB4007EE121 /* UILabel+HLSDynamicLocalization.h */,
 				6FADE9F114BA3AB4007EE121 /* UILabel+HLSDynamicLocalization.m */,
 				6FADE69A14BA04A6007EE121 /* UINavigationBar+HLSExtensions.h */,
@@ -1781,10 +1781,10 @@
 				6F82787A15358A0D00C51E6C /* URLConnectionDemoViewController.m in Sources */,
 				6F82788F1535AC8100C51E6C /* Coconut.m in Sources */,
 				6F17DE8C1535FC3E00A5777C /* HLSApplicationInformation.m in Sources */,
-				6F17DE981536275A00A5777C /* UIImageView+HLSURLConnection.m in Sources */,
 				6F17DE9E15369E3A00A5777C /* CoconutTableViewCell.m in Sources */,
 				6FC85B091547E7A5004DD493 /* HLSProgressTracker.m in Sources */,
 				6FC85B5815483481004DD493 /* HLSRestrictedInterfaceProxy.m in Sources */,
+				6F2B8B78155A967400EF9AF1 /* HLSURLImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

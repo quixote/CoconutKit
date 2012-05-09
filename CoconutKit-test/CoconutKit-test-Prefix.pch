@@ -46,6 +46,7 @@
     #import "HLSTextField.h"
     #import "HLSTransitionStyle.h"
     #import "HLSURLConnection.h"
+    #import "HLSURLImageView.h"
     #import "HLSUserInterfaceLock.h"
     #import "HLSValidable.h"
     #import "HLSValidators.h"

@@ -8,11 +8,11 @@
 
 @interface CoconutTableViewCell : HLSTableViewCell {
 @private
-    UIImageView *m_thumbnailImageView;
+    HLSURLImageView *m_thumbnailImageView;
     UILabel *m_nameLabel;
 }
 
-@property (nonatomic, retain) IBOutlet UIImageView *thumbnailImageView;
+@property (nonatomic, retain) IBOutlet HLSURLImageView *thumbnailImageView;
 @property (nonatomic, retain) IBOutlet UILabel *nameLabel;
 
 @end

@@ -300,7 +300,7 @@
     Coconut *coconut = [self.coconuts objectAtIndex:indexPath.row];
     
     // We must use a customm cell here. If we try to use a standard cell style and its imageView property, refresh does
-    // not work correctly. UITableViewCell implementation probably does some nasty things under the hood
+    // not work correctly. UITableViewCell implementation probably does some nasty things under the hood  
     if (coconut.thumbnailImageName) {
         NSURLRequest *request = nil;
         if (tableView == self.nonCachedImagesTableView) {
@@ -313,12 +313,13 @@
                                        cachePolicy:NSURLRequestReturnCacheDataElseLoad
                                    timeoutInterval:60.];        
         }
-        [tableViewCell.thumbnailImageView loadWithImageRequest:request];
+        [tableViewCell.thumbnailImageView loadWithRequest:request];
     }
     else {
-        tableViewCell.thumbnailImageView.image = nil;
+        [tableViewCell.thumbnailImageView loadWithRequest:nil];
     }
     tableViewCell.nameLabel.text = coconut.name;
+    tableViewCell.thumbnailImageView.contentMode = UIViewContentModeScaleAspectFit;
     tableViewCell.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 

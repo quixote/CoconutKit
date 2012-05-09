@@ -20,6 +20,7 @@
 		6F2908571498734100506DDC /* _ConcreteSubclassB.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F29084E1498734100506DDC /* _ConcreteSubclassB.m */; };
 		6F2908581498734100506DDC /* _ConcreteSubclassC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2908501498734100506DDC /* _ConcreteSubclassC.m */; };
 		6F290876149877F300506DDC /* TestErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F290875149877F300506DDC /* TestErrors.m */; };
+		6F2B8B7C155A974E00EF9AF1 /* HLSURLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2B8B7B155A974E00EF9AF1 /* HLSURLImageView.m */; };
 		6F33348813FAF9E0000FC9FD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F33348713FAF9E0000FC9FD /* UIKit.framework */; };
 		6F33348A13FAF9E0000FC9FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F33348913FAF9E0000FC9FD /* Foundation.framework */; };
 		6F33348C13FAF9E0000FC9FD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F33348B13FAF9E0000FC9FD /* CoreGraphics.framework */; };
@@ -160,6 +161,8 @@
 		6F2908501498734100506DDC /* _ConcreteSubclassC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ConcreteSubclassC.m; sourceTree = "<group>"; };
 		6F290874149877F300506DDC /* TestErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestErrors.h; sourceTree = "<group>"; };
 		6F290875149877F300506DDC /* TestErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestErrors.m; sourceTree = "<group>"; };
+		6F2B8B7A155A974E00EF9AF1 /* HLSURLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSURLImageView.h; sourceTree = "<group>"; };
+		6F2B8B7B155A974E00EF9AF1 /* HLSURLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSURLImageView.m; sourceTree = "<group>"; };
 		6F33348313FAF9E0000FC9FD /* CoconutKit-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoconutKit-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F33348713FAF9E0000FC9FD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6F33348913FAF9E0000FC9FD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -767,6 +770,8 @@
 				6FADE77214BA04B6007EE121 /* HLSTextFieldInternalDelegate.m */,
 				6FADE77314BA04B6007EE121 /* HLSTextFieldTouchDetector.h */,
 				6FADE77414BA04B6007EE121 /* HLSTextFieldTouchDetector.m */,
+				6F2B8B7A155A974E00EF9AF1 /* HLSURLImageView.h */,
+				6F2B8B7B155A974E00EF9AF1 /* HLSURLImageView.m */,
 				6FADE77514BA04B6007EE121 /* HLSValue1TableViewCell.h */,
 				6FADE77614BA04B6007EE121 /* HLSValue1TableViewCell.m */,
 				6FADE77714BA04B6007EE121 /* HLSValue2TableViewCell.h */,
@@ -1056,6 +1061,7 @@
 				6FC85B5C15483496004DD493 /* HLSRestrictedInterfaceProxy.m in Sources */,
 				6FAEFA65154A5B1D00500791 /* HLSRuntimeTestCase.m in Sources */,
 				6FADC423154AA11C00682040 /* HLSRestrictedInterfaceProxyTestCase.m in Sources */,
+				6F2B8B7C155A974E00EF9AF1 /* HLSURLImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
