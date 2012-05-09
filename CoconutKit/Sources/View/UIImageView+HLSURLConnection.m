@@ -136,8 +136,16 @@ static void swizzled_UIImageView__willMoveToWindow_Imp(id self, SEL _cmd, UIWind
 + (NSCache *)sharedImageCache
 {
     static NSCache *s_instance = nil;
-    if (! s_instance) {
-        s_instance = [[NSCache alloc] init];
+    static BOOL s_created = NO;
+    if (! s_created) {
+        // NSCache is available starting with iOS 4
+        if (NSClassFromString(@"NSCache")) {
+            s_instance = [[NSCache alloc] init];
+        }
+        else {
+            HLSLoggerWarn(@"The image cache is available for iOS 4 and above only");
+        }
+        s_created = YES;
     }
     return s_instance;
 }
