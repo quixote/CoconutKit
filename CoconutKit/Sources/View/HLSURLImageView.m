@@ -26,6 +26,8 @@
 - (void)startLoadingAnimation:(BOOL)animated;
 - (void)stopLoadingAnimation:(BOOL)animated;
 
+- (UIImage *)defaultEmptyImage;
+
 @end
 
 @implementation HLSURLImageView
@@ -72,7 +74,7 @@
     self.backgroundColor = [UIColor clearColor];
     
     self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-    self.activityIndicatorView.center = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+    self.activityIndicatorView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     self.activityIndicatorView.alpha = 0.f;
     [self.activityIndicatorView startAnimating];
     [self addSubview:self.activityIndicatorView];
@@ -81,15 +83,12 @@
     self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self addSubview:self.imageView];
     
-    HLSAnimationStep *animationStep = [HLSAnimationStep animationStep];
-    animationStep.duration = 0.1;
-    HLSViewAnimationStep *viewAnimationStep1 = [HLSViewAnimationStep viewAnimationStep];
-    viewAnimationStep1.alphaVariation = -1.f;
-    [animationStep addViewAnimationStep:viewAnimationStep1 forView:self.imageView];
-    HLSViewAnimationStep *viewAnimationStep2 = [HLSViewAnimationStep viewAnimationStep];
-    viewAnimationStep2.alphaVariation = 1.f;
-    [animationStep addViewAnimationStep:viewAnimationStep2 forView:self.activityIndicatorView];
-    self.loadingAnimation = [HLSAnimation animationWithAnimationStep:animationStep];
+    HLSAnimationStep *animationStep1 = [HLSAnimationStep animationStep];
+    animationStep1.duration = 0.1;
+    HLSViewAnimationStep *viewAnimationStep11 = [HLSViewAnimationStep viewAnimationStep];
+    viewAnimationStep11.alphaVariation = 1.f;
+    [animationStep1 addViewAnimationStep:viewAnimationStep11 forView:self.activityIndicatorView];
+    self.loadingAnimation = [HLSAnimation animationWithAnimationStep:animationStep1];
 }
 
 - (void)dealloc
@@ -138,7 +137,7 @@
         [connection cancel];
     }
     
-    self.imageView.image = nil;
+    self.imageView.image = [self defaultEmptyImage];
     
     // If no request, done
     if (! request) {
@@ -211,6 +210,28 @@
 {    
     HLSAnimation *reverseLoadingAnimation = [self.loadingAnimation reverseAnimation];
     [reverseLoadingAnimation playAnimated:animated];
+}
+
+#pragma mark Default images
+
+- (UIImage *)defaultEmptyImage
+{
+    UIGraphicsBeginImageContext(self.bounds.size);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    UIBezierPath *roundedRectanglePath = [UIBezierPath bezierPathWithRect:self.bounds];
+    [[UIColor grayColor] setStroke];
+    roundedRectanglePath.lineWidth = 2.5f;
+    CGFloat roundedRectanglePattern[] = {5.f, 5.f, 5.f, 5.f};
+    [roundedRectanglePath setLineDash:roundedRectanglePattern count:4 phase:0.f];
+    [roundedRectanglePath stroke];
+    
+    CGImageRef imageRef = CGBitmapContextCreateImage(context);
+    UIImage *image = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    UIGraphicsEndImageContext();
+    return image;
 }
 
 @end
