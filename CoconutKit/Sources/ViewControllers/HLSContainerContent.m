@@ -315,9 +315,10 @@ static UIViewController *swizzled_UIViewController__presentedViewController_Imp(
     // But clients might keep additional references to view controllers for caching purposes. The cleanest we can do is to 
     // restore a view controller's properties when it is removed from a container, no matter whether or not it is later 
     // reused by the client
-    self.viewController.view.frame = self.originalViewFrame;
-    self.viewController.view.alpha = self.originalViewAlpha;
-    self.viewController.view.autoresizingMask = self.originalAutoresizingMask;
+    UIView *view = [self view];
+    view.frame = self.originalViewFrame;
+    view.alpha = self.originalViewAlpha;
+    view.autoresizingMask = self.originalAutoresizingMask;
     
     // Remove the association of the view controller with its content container object
     NSAssert(objc_getAssociatedObject(self.viewController, s_containerContentKey), @"The view controller was not associated with a content container");
@@ -534,17 +535,18 @@ static UIViewController *swizzled_UIViewController__presentedViewController_Imp(
         return;
     }
     
-    // Remove the view controller's view
-    [self.viewController.view removeFromSuperview];
+    // Remove the view controller's view (if any)
+    UIView *view = [self view];
+    [view removeFromSuperview];
     self.addedToContainerView = NO;
     
     m_lifeCyclePhase = HLSViewControllerLifeCyclePhaseInitialized;
     
     // Restore view controller original properties (this way, if addViewToContainerView:inContainerContentStack:
     // is called again later, it will get the view controller's view in its original state)
-    self.viewController.view.frame = self.originalViewFrame;
-    self.viewController.view.alpha = self.originalViewAlpha;
-    self.viewController.view.autoresizingMask = self.originalAutoresizingMask;
+    view.frame = self.originalViewFrame;
+    view.alpha = self.originalViewAlpha;
+    view.autoresizingMask = self.originalAutoresizingMask;
 }
 
 - (void)releaseViews
