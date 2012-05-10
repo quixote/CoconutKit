@@ -34,8 +34,4 @@ typedef enum {
 
 @property (nonatomic, readonly, retain) UIImage *image;
 
-@property (nonatomic, retain) UIView *loadingView;
-@property (nonatomic, retain) UIImage *loadingFailureImage;
-@property (nonatomic, assign) HLSLoadingTransitionStyle loadingTransitionStyle;
-
 @end

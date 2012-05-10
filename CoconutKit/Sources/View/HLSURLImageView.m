@@ -8,6 +8,7 @@
 
 #import "HLSURLImageView.h"
 
+#import "HLSAnimation.h"
 #import "HLSLogger.h"
 #import "HLSZeroingWeakRef.h"
 
@@ -19,6 +20,11 @@
 
 @property (nonatomic, retain) HLSZeroingWeakRef *connectionZeroingWeakRef;
 @property (nonatomic, retain) UIImageView *imageView;
+@property (nonatomic, retain) UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, retain) HLSAnimation *loadingAnimation;
+
+- (void)startLoadingAnimation:(BOOL)animated;
+- (void)stopLoadingAnimation:(BOOL)animated;
 
 @end
 
@@ -62,18 +68,35 @@
 }
 
 - (void)hlsURLImageViewInit
-{
+{   
     self.backgroundColor = [UIColor clearColor];
+    
+    self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
+    self.activityIndicatorView.center = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+    self.activityIndicatorView.alpha = 0.f;
+    [self.activityIndicatorView startAnimating];
+    [self addSubview:self.activityIndicatorView];
+    
     self.imageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
     self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self addSubview:self.imageView];
+    
+    HLSAnimationStep *animationStep = [HLSAnimationStep animationStep];
+    animationStep.duration = 0.1;
+    HLSViewAnimationStep *viewAnimationStep1 = [HLSViewAnimationStep viewAnimationStep];
+    viewAnimationStep1.alphaVariation = -1.f;
+    [animationStep addViewAnimationStep:viewAnimationStep1 forView:self.imageView];
+    HLSViewAnimationStep *viewAnimationStep2 = [HLSViewAnimationStep viewAnimationStep];
+    viewAnimationStep2.alphaVariation = 1.f;
+    [animationStep addViewAnimationStep:viewAnimationStep2 forView:self.activityIndicatorView];
+    self.loadingAnimation = [HLSAnimation animationWithAnimationStep:animationStep];
 }
 
 - (void)dealloc
 {
     self.connectionZeroingWeakRef = nil;
-    self.loadingView = nil;
-    self.loadingFailureImage = nil;
+    self.activityIndicatorView = nil;
+    self.loadingAnimation = nil;
 
     [super dealloc];
 }
@@ -91,44 +114,9 @@
 
 @synthesize imageView = _imageView;
 
-@synthesize loadingView = _loadingView;
+@synthesize activityIndicatorView = _activityIndicatorView;
 
-@synthesize loadingFailureImage = _loadingFailureImage;
-
-@synthesize loadingTransitionStyle = _loadingtransitionStyle;
-
-- (void)loadWithRequest:(NSURLRequest *)request
-{
-    if (! request) {
-        self.imageView.image = nil;
-        return;
-    }
-    
-    UIImage *image = [[HLSURLImageView sharedImageCache] objectForKey:[request URL]];
-    if (image) {
-        self.imageView.image = image;
-        return;
-    }
-    
-    // Create the connection
-    HLSURLConnection *connection = self.connectionZeroingWeakRef.object;
-    if (connection) {
-        [connection cancel];
-    }
-    
-    connection = [HLSURLConnection connectionWithRequest:request];
-    connection.delegate = self;
-    
-    self.connectionZeroingWeakRef = [[[HLSZeroingWeakRef alloc] initWithObject:connection] autorelease];
-    
-    // The connection is scheduled with the NSRunLoopCommonModes run loop mode to allow connection events (i.e. 
-    // image assignment when the download is complete) also when scrolling occurs (which is quite common when image 
-    // views are used within table view cells)
-    [connection startWithRunLoopMode:NSRunLoopCommonModes];
-    
-    // TODO: Customizable placeholder view / image
-    self.imageView.image = nil;
-}
+@synthesize loadingAnimation = _loadingAnimation;
 
 - (void)setContentMode:(UIViewContentMode)contentMode
 {
@@ -140,6 +128,45 @@
     return self.imageView.contentMode;
 }
 
+#pragma mark Downloading images
+
+- (void)loadWithRequest:(NSURLRequest *)request
+{
+    // Cancel any running connection
+    HLSURLConnection *connection = self.connectionZeroingWeakRef.object;
+    if (connection) {
+        [connection cancel];
+    }
+    
+    self.imageView.image = nil;
+    
+    // If no request, done
+    if (! request) {
+        return;
+    }
+    
+    // Find if the image is already available from the cache
+    UIImage *image = [[HLSURLImageView sharedImageCache] objectForKey:[request URL]];
+    if (image) {
+        self.imageView.image = image;
+        return;
+    }
+    
+    [self startLoadingAnimation:YES];
+        
+    // Create a new connection
+    connection = [HLSURLConnection connectionWithRequest:request];
+    connection.delegate = self;
+    
+    // Use a zeroing weak ref. It will be automatically nilled when the connection ends
+    self.connectionZeroingWeakRef = [[[HLSZeroingWeakRef alloc] initWithObject:connection] autorelease];
+    
+    // The connection is scheduled with the NSRunLoopCommonModes run loop mode to allow connection events (i.e. 
+    // image assignment when the download is complete) also when scrolling occurs (which is quite common when image 
+    // views are used within table view cells)
+    [connection startWithRunLoopMode:NSRunLoopCommonModes];
+}
+
 #pragma mark HLSURLConnectionDelegate protocol implementation
 
 - (void)connectionDidFinishLoading:(HLSURLConnection *)connection
@@ -148,12 +175,18 @@
     [[HLSURLImageView sharedImageCache] setObject:image forKey:[connection.request URL]];
     
     self.imageView.image = image;
+    
+    [self stopLoadingAnimation:YES];
 }
 
 - (void)connection:(HLSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    // TODO: Customizable placeholder image
-    self.imageView.image = nil;
+    [self stopLoadingAnimation:YES];
+}
+
+- (void)connectionDidCancel:(HLSURLConnection *)connection
+{
+    [self stopLoadingAnimation:NO];
 }
 
 #pragma mark View lifecycle
@@ -165,6 +198,19 @@
         HLSURLConnection *connection = self.connectionZeroingWeakRef.object;
         [connection cancel];        
     }
+}
+
+#pragma mark Animations
+
+- (void)startLoadingAnimation:(BOOL)animated
+{
+    [self.loadingAnimation playAnimated:YES];
+}
+
+- (void)stopLoadingAnimation:(BOOL)animated
+{    
+    HLSAnimation *reverseLoadingAnimation = [self.loadingAnimation reverseAnimation];
+    [reverseLoadingAnimation playAnimated:animated];
 }
 
 @end
