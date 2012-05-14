@@ -23,3 +23,9 @@ NSURL *HLSApplicationDocumentDirectoryURL(void);
  */
 NSString *HLSApplicationTemporaryDirectoryPath(void);
 NSURL *HLSApplicationTemporaryDirectoryURL(void);
+
+/**
+ * Return the application Caches directory
+ */
+NSString *HLSApplicationCachesDirectoryPath(void);
+NSURL *HLSApplicationCachesDirectoryURL(void);

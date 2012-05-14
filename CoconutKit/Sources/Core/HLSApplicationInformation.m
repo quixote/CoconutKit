@@ -39,3 +39,13 @@ NSURL *HLSApplicationTemporaryDirectoryURL(void)
 {
     return [NSURL fileURLWithPath:HLSApplicationTemporaryDirectoryPath()];
 }
+
+NSString *HLSApplicationCachesDirectoryPath(void)
+{
+    return [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject];
+}
+
+NSURL *HLSApplicationCachesDirectoryURL(void)
+{
+    return [NSURL fileURLWithPath:HLSApplicationCachesDirectoryPath()];
+}
