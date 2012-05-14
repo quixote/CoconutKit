@@ -14,6 +14,7 @@
 		6F17DE9E15369E3A00A5777C /* CoconutTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F17DE9D15369E3A00A5777C /* CoconutTableViewCell.m */; };
 		6F17DEA015369E4A00A5777C /* CoconutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F17DE9F15369E4A00A5777C /* CoconutTableViewCell.xib */; };
 		6F2B8B78155A967400EF9AF1 /* HLSURLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F2B8B77155A967400EF9AF1 /* HLSURLImageView.m */; };
+		6F2F6D28155D8A9000EF2AE9 /* img_image_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2F6D27155D8A9000EF2AE9 /* img_image_placeholder.png */; };
 		6F3B05BE14BC0A0E0026F512 /* img_localized.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F3B05BC14BC0A0E0026F512 /* img_localized.png */; };
 		6F3B05CE14BC0A510026F512 /* img_localized.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F3B05C714BC0A500026F512 /* img_localized.png */; };
 		6F3B05D014BC0A510026F512 /* img_localized.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F3B05CC14BC0A510026F512 /* img_localized.png */; };
@@ -233,6 +234,7 @@
 		6F17DE9F15369E4A00A5777C /* CoconutTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoconutTableViewCell.xib; sourceTree = "<group>"; };
 		6F2B8B76155A967400EF9AF1 /* HLSURLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSURLImageView.h; sourceTree = "<group>"; };
 		6F2B8B77155A967400EF9AF1 /* HLSURLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSURLImageView.m; sourceTree = "<group>"; };
+		6F2F6D27155D8A9000EF2AE9 /* img_image_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_image_placeholder.png; sourceTree = "<group>"; };
 		6F3B05C814BC0A500026F512 /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = img_localized.png; sourceTree = "<group>"; };
 		6F3B05CD14BC0A510026F512 /* fr */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fr; path = img_localized.png; sourceTree = "<group>"; };
 		6F3B063814BC7BA60026F512 /* UIToolbar+HLSExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+HLSExtensions.h"; sourceTree = "<group>"; };
@@ -992,6 +994,7 @@
 				6FADE7E414BA04C8007EE121 /* img_coconut2.jpg */,
 				6FADE7E514BA04C8007EE121 /* img_coconut3.jpg */,
 				6FADE7E614BA04C8007EE121 /* img_coconut4.jpg */,
+				6F2F6D27155D8A9000EF2AE9 /* img_image_placeholder.png */,
 				6FEEF83114F27C00001585A6 /* parallax_demo_grass_layer.png */,
 				6FEEF84F14F2886F001585A6 /* parallax_demo_mountains_layer.png */,
 				6FEEF83214F27C00001585A6 /* parallax_demo_sky_layer.png */,
@@ -1633,6 +1636,7 @@
 				6F82786F1535893F00C51E6C /* DynamicLocalizationDemoViewController.xib in Resources */,
 				6F82787C15358A1800C51E6C /* URLConnectionDemoViewController.xib in Resources */,
 				6F17DEA015369E4A00A5777C /* CoconutTableViewCell.xib in Resources */,
+				6F2F6D28155D8A9000EF2AE9 /* img_image_placeholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

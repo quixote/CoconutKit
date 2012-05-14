@@ -24,6 +24,7 @@
 		6F1AF861142B046600925B7A /* CoconutKit_cursor_default_pointer.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1AF84F142B046600925B7A /* CoconutKit_cursor_default_pointer.png */; };
 		6F1AF862142B046600925B7A /* CoconutKit_HLSWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F1AF850142B046600925B7A /* CoconutKit_HLSWebViewController.xib */; };
 		6F1AF863142B046600925B7A /* CoconutKit_Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F1AF851142B046600925B7A /* CoconutKit_Localizable.strings */; };
+		6F2F6D2A155D8A9D00EF2AE9 /* img_image_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F2F6D29155D8A9D00EF2AE9 /* img_image_placeholder.png */; };
 		6F4F84AB136E8BA4007D027B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F4F84AA136E8BA4007D027B /* MessageUI.framework */; };
 		6F507D6E14BB742800D54088 /* DemoTable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F507D6C14BB742800D54088 /* DemoTable.strings */; };
 		6F5A0BB41509D19300A20DFF /* SlideshowDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F5A0BB21509D19300A20DFF /* SlideshowDemoViewController.m */; };
@@ -166,6 +167,7 @@
 		6F1AF850142B046600925B7A /* CoconutKit_HLSWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoconutKit_HLSWebViewController.xib; sourceTree = "<group>"; };
 		6F1AF853142B046600925B7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/CoconutKit_Localizable.strings; sourceTree = "<group>"; };
 		6F1AF855142B046600925B7A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CoconutKit_Localizable.strings; sourceTree = "<group>"; };
+		6F2F6D29155D8A9D00EF2AE9 /* img_image_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_image_placeholder.png; sourceTree = "<group>"; };
 		6F4F84AA136E8BA4007D027B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		6F507D6D14BB742800D54088 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/DemoTable.strings; sourceTree = "<group>"; };
 		6F507D6F14BB743000D54088 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/DemoTable.strings; sourceTree = "<group>"; };
@@ -967,6 +969,7 @@
 				6F9C46B514C5C36300824AB2 /* img_coconut2.jpg */,
 				6F9C46B614C5C36300824AB2 /* img_coconut3.jpg */,
 				6F9C46B714C5C36300824AB2 /* img_coconut4.jpg */,
+				6F2F6D29155D8A9D00EF2AE9 /* img_image_placeholder.png */,
 				6FEEF84214F2810E001585A6 /* parallax_demo_grass_layer.png */,
 				6FEEF85114F2887C001585A6 /* parallax_demo_mountains_layer.png */,
 				6FEEF84314F2810E001585A6 /* parallax_demo_sky_layer.png */,
@@ -1123,6 +1126,7 @@
 				6F8278771535895500C51E6C /* DynamicLocalizationDemoViewController.xib in Resources */,
 				6F82788115358A2400C51E6C /* URLConnectionDemoViewController.xib in Resources */,
 				6F17DEA515369EF000A5777C /* CoconutTableViewCell.xib in Resources */,
+				6F2F6D2A155D8A9D00EF2AE9 /* img_image_placeholder.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

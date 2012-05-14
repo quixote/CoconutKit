@@ -8,6 +8,7 @@
 
 #import "HLSURLConnection.h"
 
+@class HLSAnimation;
 @class HLSZeroingWeakRef;
 
 typedef enum {
@@ -24,14 +25,16 @@ typedef enum {
 @private
     HLSZeroingWeakRef *_connectionZeroingWeakRef;
     UIImageView *_imageView;
-    UIView *_loadingView;
-    UIImage *_loadingFailureImage;
-    HLSLoadingTransitionStyle _loadingtransitionStyle;
+    UIImage *_emptyImage;
+    UIActivityIndicatorView *_activityIndicatorView;
+    HLSAnimation *_loadingAnimation;
 }
 
 // Use nil to clear
 - (void)loadWithRequest:(NSURLRequest *)request;
 
 @property (nonatomic, readonly, retain) UIImage *image;
+
+@property (nonatomic, retain) UIImage *emptyImage;
 
 @end

@@ -72,16 +72,16 @@
 - (void)hlsURLImageViewInit
 {   
     self.backgroundColor = [UIColor clearColor];
+        
+    self.imageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
+    self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self addSubview:self.imageView];
     
     self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
     self.activityIndicatorView.center = CGPointMake(CGRectGetMidX(self.bounds), CGRectGetMidY(self.bounds));
     self.activityIndicatorView.alpha = 0.f;
     [self.activityIndicatorView startAnimating];
     [self addSubview:self.activityIndicatorView];
-    
-    self.imageView = [[[UIImageView alloc] initWithFrame:self.bounds] autorelease];
-    self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self addSubview:self.imageView];
     
     HLSAnimationStep *animationStep1 = [HLSAnimationStep animationStep];
     animationStep1.duration = 0.1;
@@ -94,6 +94,8 @@
 - (void)dealloc
 {
     self.connectionZeroingWeakRef = nil;
+    self.imageView = nil;
+    self.emptyImage = nil;
     self.activityIndicatorView = nil;
     self.loadingAnimation = nil;
 
@@ -112,6 +114,8 @@
 }
 
 @synthesize imageView = _imageView;
+
+@synthesize emptyImage = _emptyImage;
 
 @synthesize activityIndicatorView = _activityIndicatorView;
 
@@ -137,7 +141,7 @@
         [connection cancel];
     }
     
-    self.imageView.image = [self defaultEmptyImage];
+    self.imageView.image = self.emptyImage ?: [self defaultEmptyImage];
     
     // If no request, done
     if (! request) {
@@ -212,7 +216,7 @@
     [reverseLoadingAnimation playAnimated:animated];
 }
 
-#pragma mark Default images
+#pragma mark Images
 
 - (UIImage *)defaultEmptyImage
 {

@@ -311,7 +311,8 @@
         else {
             request = [NSURLRequest requestWithURL:[[NSURL URLWithString:@"http://localhost:8087"] URLByAppendingPathComponent:coconut.thumbnailImageName]
                                        cachePolicy:NSURLRequestReturnCacheDataElseLoad
-                                   timeoutInterval:60.];        
+                                   timeoutInterval:60.];
+            tableViewCell.thumbnailImageView.emptyImage = [UIImage imageNamed:@"img_image_placeholder.png"];
         }
         [tableViewCell.thumbnailImageView loadWithRequest:request];
     }
