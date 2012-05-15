@@ -34,6 +34,18 @@ static NSString* digest(NSString *string, unsigned char *(*cc_digest)(const void
 
 #pragma mark Convenience methods
 
+- (BOOL)writeToFile:(NSString *)file options:(NSDataWritingOptions)options encoding:(NSStringEncoding)encoding error:(NSError **)pError
+{
+    NSData *stringData = [self dataUsingEncoding:encoding];
+    return [stringData writeToFile:file options:options error:pError];
+}
+
+- (BOOL)writeToURL:(NSURL *)url options:(NSDataWritingOptions)options encoding:(NSStringEncoding)encoding error:(NSError **)pError
+{
+    NSData *stringData = [self dataUsingEncoding:encoding];
+    return [stringData writeToURL:url options:options error:pError];
+}
+
 - (NSString *)stringByTrimmingWhitespaces
 {
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];

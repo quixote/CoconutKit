@@ -12,6 +12,13 @@ NSString *HLSStringFromCATransform3D(CATransform3D transform);
 @interface NSString (HLSExtensions)
 
 /**
+ * Convenience methods to write string data to disk with options. Refer to the documentation of the similar NSData write methods
+ * for more information
+ */
+- (BOOL)writeToFile:(NSString *)file options:(NSDataWritingOptions)options encoding:(NSStringEncoding)encoding error:(NSError **)pError;
+- (BOOL)writeToURL:(NSURL *)url options:(NSDataWritingOptions)options encoding:(NSStringEncoding)encoding error:(NSError **)pError;
+
+/**
  * Trims spaces left and right
  */
 - (NSString *)stringByTrimmingWhitespaces;
