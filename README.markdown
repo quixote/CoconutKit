@@ -40,17 +40,12 @@ You can add CoconutKit to your project in several different ways.
 
 #### Adding binaries using CocoaPods
 
-Since CoconutKit 1.1.4, the easiest and recommended way to add CoconutKit to a project is using [CocoaPods](https://github.com/CocoaPods/CocoaPods). The CoconutKit specification file should be available from the official CocoaPods [specification repository](https://github.com/CocoaPods/Specs). If this is the case, simply edit your project `Podfile` file to add an entry for CoconutKit:
+Since CoconutKit 1.1.4, the easiest and recommended way to add CoconutKit to a project is using [CocoaPods](https://github.com/CocoaPods/CocoaPods). The CoconutKit specification file is available from the official CocoaPods [specification repository](https://github.com/CocoaPods/Specs). Simply edit your project `Podfile` file to add an entry for CoconutKit:
 
     platform :ios
     dependency 'CoconutKit', '~> <version>'
-
-If the specification file is not available from the official CocoaPods specification repository, use the specification file available in the `Tools/CocoaPods` directory. Either add it to your `~/.cocoapods` local specification repository (creating the dedicated folder structure), or edit your project `Podfile` to tell CocoaPods to use the file directly:
-
-    platform :ios
-    dependency 'CoconutKit', :podspec => '/absolute/path/to/CoconutKit/Tools/CocoaPods/CoconutKit.podspec'
     
-The specification file has successfully been tested with the latest stable CocoaPods release (0.5.1).
+The specification file has successfully been tested with the latest stable CocoaPods release (0.6).
 
 #### Adding binaries manually
 

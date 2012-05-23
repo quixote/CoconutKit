@@ -1,6 +1,8 @@
+Library_version = '1.1.4'
+
 Pod::Spec.new do |s|
   s.name = 'CoconutKit'
-  s.version = '1.1.4'
+  s.version = Library_version
   s.license = 'MIT'
   s.summary = 'CoconutKit is a library of high-quality iOS components'
   s.homepage = 'https://github.com/defagos/CoconutKit'
@@ -10,9 +12,10 @@ Pod::Spec.new do |s|
 
   s.platform = :ios
   
-  s.source   = { :git => 'git://github.com/defagos/CoconutKit-binaries.git', :tag => '1.1.4' }
+  s.source   = { :git => 'git://github.com/defagos/CoconutKit-binaries.git', :tag => Library_version }
+  
+  # TODO: Update paths to copy data from local Pods directory after unzipping
   s.resources = 'CoconutKit-resources.bundle'
-
   s.xcconfig =  { 'FRAMEWORK_SEARCH_PATHS' => '${PODS_ROOT}/CoconutKit', 'OTHER_LDFLAGS' => '-framework CoconutKit' }
 
   s.frameworks = 'CoreData', 'MessageUI', 'QuartzCore'
