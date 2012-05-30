@@ -504,6 +504,30 @@ const float HLSURLConnectionProgressUnavailable = -1.f;
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
 {
+    // Warns about an issue with cached HTTP responses having no expiration information, when the default cache policy
+    // is used. The retention time in such cases is unpredictable, which can lead to stale data returned though new
+    // data is actually available on the server. In such cases, debugging can be a pain. This message should hopefully
+    // pinpoint such issues should they occur
+    //
+    // For more information read http://blackpixel.com/blog/1659/caching-and-nsurlconnection/
+    if ([[connection currentRequest] cachePolicy] == NSURLRequestUseProtocolCachePolicy) {
+        NSURLResponse *response = [cachedResponse response];
+        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+            
+            // See http://www.w3.org/Protocols/rfc2616/rfc2616-sec13.html#sec13.2.1
+            NSDictionary *headers = [httpResponse allHeaderFields];
+            if (! [headers valueForKey:@"Cache-Control"] && ! [headers valueForKey:@"Expires"]) {
+                HLSLoggerWarn(@"HTTP connection with NSURLRequestUseProtocolCachePolicy cache policy: No expiration information "
+                              "has been received from the server. If data is in cache it might be returned even if new data is "
+                              "available from the server. If you experience such issues either specify another cache policy for "
+                              "the connection request (e.g. NSURLRequestReloadIgnoringLocalCacheData) or update the server to "
+                              "specify expiration information times using either the Expires header, or the max-age directive of "
+                              "the Cache-Control header (this is the best solution if you control the server)");
+            }
+        }    
+    }
+            
     if ([self.delegate respondsToSelector:@selector(connection:willCacheResponse:)]) {
         return [self.delegate connection:self willCacheResponse:cachedResponse];
     }
