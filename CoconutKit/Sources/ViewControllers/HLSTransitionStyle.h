@@ -41,4 +41,4 @@ typedef enum {
 
 // Default duration for a transition animation. This is a reserved value and does not correspond to any meaningful
 // duration
-extern const NSTimeInterval kAnimationTransitionDefaultDuration;
+extern const NSTimeInterval HLSTransitionDefaultDuration;

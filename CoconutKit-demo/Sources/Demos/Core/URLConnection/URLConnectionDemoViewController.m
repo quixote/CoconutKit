@@ -305,13 +305,13 @@
         NSURLRequest *request = nil;
         if (tableView == self.nonCachedImagesTableView) {
             request = [NSURLRequest requestWithURL:[[NSURL URLWithString:@"http://localhost:8087"] URLByAppendingPathComponent:coconut.thumbnailImageName]
-                                       cachePolicy:NSURLRequestReloadIgnoringCacheData 
-                                   timeoutInterval:60.];
+                                       cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+                                   timeoutInterval:HLSURLConnectionDefaultTimeout];
         }
         else {
             request = [NSURLRequest requestWithURL:[[NSURL URLWithString:@"http://localhost:8087"] URLByAppendingPathComponent:coconut.thumbnailImageName]
                                        cachePolicy:NSURLRequestReturnCacheDataElseLoad
-                                   timeoutInterval:60.];
+                                   timeoutInterval:HLSURLConnectionDefaultTimeout];
             tableViewCell.thumbnailImageView.emptyImage = [UIImage imageNamed:@"img_image_placeholder.png"];
         }
         [tableViewCell.thumbnailImageView loadWithRequest:request];
@@ -331,8 +331,8 @@
     [self disableUserInterfaceForAsynchronousConnection];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8087/coconuts.plist"]
-                                             cachePolicy:NSURLRequestReloadIgnoringCacheData 
-                                         timeoutInterval:60.];
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
+                                         timeoutInterval:HLSURLConnectionDefaultTimeout];
     self.asynchronousConnection = [HLSURLConnection connectionWithRequest:request];
     self.asynchronousConnection.tag = @"asynchronousConnection";
     self.asynchronousConnection.downloadFilePath = [HLSApplicationTemporaryDirectoryPath() stringByAppendingPathComponent:@"coconuts.plist"];
@@ -345,8 +345,8 @@
     [self disableUserInterfaceForAsynchronousConnectionNoCancel];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8087/coconuts.plist"]
-                                             cachePolicy:NSURLRequestReloadIgnoringCacheData 
-                                         timeoutInterval:60.];
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
+                                         timeoutInterval:HLSURLConnectionDefaultTimeout];
     
     // Does not need to keep any reference to the connection object
     HLSURLConnection *connection = [HLSURLConnection connectionWithRequest:request];
@@ -364,8 +364,8 @@
 - (IBAction)loadSynchronously:(id)sender
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8087/coconuts.plist"]
-                                             cachePolicy:NSURLRequestReloadIgnoringCacheData 
-                                         timeoutInterval:60.];
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
+                                         timeoutInterval:HLSURLConnectionDefaultTimeout];
     HLSURLConnection *connection = [HLSURLConnection connectionWithRequest:request];
     connection.tag = @"synchronousConnection";
     connection.delegate = self;
@@ -386,8 +386,8 @@
     self.progressView.progress = 0.f;
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8087/large_coconut.jpg"]
-                                             cachePolicy:NSURLRequestReloadIgnoringCacheData 
-                                         timeoutInterval:60.];
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
+                                         timeoutInterval:HLSURLConnectionDefaultTimeout];
     
     HLSURLConnection *connection = [HLSURLConnection connectionWithRequest:request];
     connection.tag = @"httpGet";
@@ -398,8 +398,8 @@
 - (IBAction)testHTTP404Error:(id)sender
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://localhost:8087/404_not_found.html"]
-                                             cachePolicy:NSURLRequestReloadIgnoringCacheData 
-                                         timeoutInterval:60.];
+                                             cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 
+                                         timeoutInterval:HLSURLConnectionDefaultTimeout];
     HLSURLConnection *connection = [HLSURLConnection connectionWithRequest:request];
     connection.tag = @"http404";
     connection.treatingHTTPErrorsAsFailures = self.treatingHTTPErrorsAsFailuresSwitch.on;

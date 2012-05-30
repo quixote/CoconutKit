@@ -101,7 +101,7 @@
 /**
  * Initialize a container content manager object. Requires the view controller to be managed, the container in which
  * it is inserted, as well as the details of the transition with which it gets displayed. Use the reserved
- * kAnimationTransitionDefaultDuration duration for the default animation duration.
+ * HLSTransitionDefaultDuration duration for the default animation duration.
  * The view controller is retained.
  */
 - (id)initWithViewController:(UIViewController *)viewController

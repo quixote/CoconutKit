@@ -6,4 +6,4 @@
 //  Copyright 2011 Hortis. All rights reserved.
 //
 
-const NSTimeInterval kAnimationTransitionDefaultDuration = -1.;
+const NSTimeInterval HLSTransitionDefaultDuration = -1.;

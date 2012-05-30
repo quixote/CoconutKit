@@ -15,6 +15,7 @@
 #import "HLSNotifications.h"
 #import "HLSZeroingWeakRef.h"
 
+const NSTimeInterval HLSURLConnectionDefaultTimeout = 60.;
 const float HLSURLConnectionProgressUnavailable = -1.f;
 
 @interface HLSURLConnection ()
@@ -295,13 +296,13 @@ const float HLSURLConnectionProgressUnavailable = -1.f;
     // one by one. To filter events so that we only receive those from NSURLConnection, we schedule the
     // asynchronous connection in its own private run loop mode, and we run the run loop in this mode until
     // the NSURLConnection is done processing
-    static NSString * const kHLSURLConnectionRunLoopPrivateMode = @"HLSURLConnectionRunLoopPrivateMode";
-    if (! [self startWithRunLoopMode:kHLSURLConnectionRunLoopPrivateMode]) {
+    static NSString * const kRunLoopPrivateMode = @"HLSURLConnectionRunLoopPrivateMode";
+    if (! [self startWithRunLoopMode:kRunLoopPrivateMode]) {
         return NO;
     }
     
     while (self.status != HLSURLConnectionStatusIdle) {
-        [[NSRunLoop currentRunLoop] runMode:kHLSURLConnectionRunLoopPrivateMode beforeDate:[NSDate distantFuture]];
+        [[NSRunLoop currentRunLoop] runMode:kRunLoopPrivateMode beforeDate:[NSDate distantFuture]];
     }
     
     return YES;

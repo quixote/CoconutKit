@@ -20,6 +20,9 @@ typedef enum {
     HLSURLConnectionStatusEnumSize = HLSURLConnectionStatusEnumEnd - HLSURLConnectionStatusEnumBegin
 } HLSURLConnectionStatus;
 
+// Default timeout value (60 seconds, as for NSURLConnection)
+extern const NSTimeInterval HLSURLConnectionDefaultTimeout;
+
 // Value returned by the progress property when no progress estimate is available
 extern const float HLSURLConnectionProgressUnavailable;
 

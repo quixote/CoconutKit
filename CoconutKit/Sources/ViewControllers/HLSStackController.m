@@ -14,9 +14,9 @@
 #import "NSArray+HLSExtensions.h"
 #import "UIViewController+HLSExtensions.h"
 
-const NSUInteger kStackMinimalCapacity = 2;
-const NSUInteger kStackDefaultCapacity = 2;
-const NSUInteger kStackUnlimitedCapacity = NSUIntegerMax;
+const NSUInteger HLSStackControllerMinimalCapacity = 2;
+const NSUInteger HLSStackControllerDefaultCapacity = 2;
+const NSUInteger HLSStackControllerUnlimitedCapacity = NSUIntegerMax;
 
 @interface HLSStackController ()
 
@@ -39,15 +39,15 @@ const NSUInteger kStackUnlimitedCapacity = NSUIntegerMax;
 - (id)initWithRootViewController:(UIViewController *)rootViewController capacity:(NSUInteger)capacity
 {
     if ((self = [super init])) {
-        if (capacity < kStackMinimalCapacity) {
-            capacity = kStackMinimalCapacity;
-            HLSLoggerWarn(@"Capacity cannot be smaller than minimal value %d; set to this value", kStackMinimalCapacity);
+        if (capacity < HLSStackControllerMinimalCapacity) {
+            capacity = HLSStackControllerMinimalCapacity;
+            HLSLoggerWarn(@"Capacity cannot be smaller than minimal value %d; set to this value", HLSStackControllerMinimalCapacity);
         }
         
         HLSContainerContent *rootContainerContent = [[[HLSContainerContent alloc] initWithViewController:rootViewController 
                                                                                      containerController:self 
                                                                                          transitionStyle:HLSTransitionStyleNone 
-                                                                                                duration:kAnimationTransitionDefaultDuration] autorelease];
+                                                                                                duration:HLSTransitionDefaultDuration] autorelease];
         self.containerContentStack = [NSMutableArray arrayWithObject:rootContainerContent];
         m_capacity = capacity;
     }
@@ -56,7 +56,7 @@ const NSUInteger kStackUnlimitedCapacity = NSUIntegerMax;
 
 - (id)initWithRootViewController:(UIViewController *)rootViewController
 {
-    return [self initWithRootViewController:rootViewController capacity:kStackDefaultCapacity];
+    return [self initWithRootViewController:rootViewController capacity:HLSStackControllerDefaultCapacity];
 }
 
 - (id)init
@@ -294,7 +294,7 @@ const NSUInteger kStackUnlimitedCapacity = NSUIntegerMax;
 {
     [self pushViewController:viewController 
          withTransitionStyle:transitionStyle
-                    duration:kAnimationTransitionDefaultDuration];
+                    duration:HLSTransitionDefaultDuration];
 }
 
 - (void)pushViewController:(UIViewController *)viewController

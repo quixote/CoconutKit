@@ -112,7 +112,7 @@
 /**
  * Display an inset view controller using one of the available built-in transition styles (the duration will be 
  * evenly distributed on the animation steps composing the animation so that the animation rhythm stays the same)
- * Use the special value kAnimationTransitionDefaultDuration as duration to get the default transition duration 
+ * Use the special value HLSTransitionDefaultDuration as duration to get the default transition duration 
  * (same result as the method above)
  * Setting the inset view controller to nil removes the one currently display (if any). Only the following styles are
  * available in this case: HLSTransitionStyleNone and HLSTransitionStyleCrossDissolve

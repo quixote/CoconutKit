@@ -12,9 +12,9 @@
 #import "HLSViewController.h"
 
 // Standard capacities
-extern const NSUInteger kStackMinimalCapacity;
-extern const NSUInteger kStackDefaultCapacity;
-extern const NSUInteger kStackUnlimitedCapacity;
+extern const NSUInteger HLSStackControllerMinimalCapacity;
+extern const NSUInteger HLSStackControllerDefaultCapacity;
+extern const NSUInteger HLSStackControllerUnlimitedCapacity;
 
 // Forward declarations
 @protocol HLSStackControllerDelegate;
@@ -96,7 +96,7 @@ extern const NSUInteger kStackUnlimitedCapacity;
 /**
  * Same as pushViewController:withTransitionStyle:, but the transition duration can be overridden (the duration will be 
  * evenly distributed on the animation steps composing the animation so that the animation rhythm stays the same). Use 
- * the reserved kAnimationTransitionDefaultDuration value as duration to get the default transition duration (same 
+ * the reserved HLSTransitionDefaultDuration value as duration to get the default transition duration (same 
  * result as the method above)
  * This method can also be called before the stack controller is displayed (the animation does not get played, but this
  * defines the pop animation which will get played when the view controller is later removed)

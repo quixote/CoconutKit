@@ -53,7 +53,7 @@
     self.containerContent = [[[HLSContainerContent alloc] initWithViewController:[self emptyViewController]
                                                              containerController:self
                                                                  transitionStyle:HLSTransitionStyleNone
-                                                                        duration:kAnimationTransitionDefaultDuration] autorelease];
+                                                                        duration:HLSTransitionDefaultDuration] autorelease];
 }
 
 - (void)dealloc
@@ -225,7 +225,7 @@
 {
     [self setInsetViewController:insetViewController 
              withTransitionStyle:transitionStyle
-                        duration:kAnimationTransitionDefaultDuration];
+                        duration:HLSTransitionDefaultDuration];
 }
 
 - (void)setInsetViewController:(UIViewController *)insetViewController

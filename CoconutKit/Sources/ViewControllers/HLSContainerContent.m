@@ -300,7 +300,7 @@ static UIViewController *swizzled_UIViewController__presentedViewController_Imp(
     return [self initWithViewController:viewController 
                     containerController:containerController 
                         transitionStyle:transitionStyle 
-                               duration:kAnimationTransitionDefaultDuration];
+                               duration:HLSTransitionDefaultDuration];
 }
 
 - (id)init
@@ -350,8 +350,8 @@ static UIViewController *swizzled_UIViewController__presentedViewController_Imp(
 - (void)setDuration:(NSTimeInterval)duration
 {
     // Sanitize input
-    if (doublelt(duration, 0.) && ! doubleeq(duration, kAnimationTransitionDefaultDuration)) {
-        HLSLoggerWarn(@"Duration must be non-negative or %f. Fixed to 0", kAnimationTransitionDefaultDuration);
+    if (doublelt(duration, 0.) && ! doubleeq(duration, HLSTransitionDefaultDuration)) {
+        HLSLoggerWarn(@"Duration must be non-negative or %f. Fixed to 0", HLSTransitionDefaultDuration);
         m_duration = 0.;
     }
     else {
@@ -1088,7 +1088,7 @@ static UIViewController *swizzled_UIViewController__presentedViewController_Imp(
                                                       appearingContainerContent:appearingContainerContent 
                                                   disappearingContainerContents:disappearingContainerContents 
                                                                   containerView:containerView];    
-    if (doubleeq(duration, kAnimationTransitionDefaultDuration)) {
+    if (doubleeq(duration, HLSTransitionDefaultDuration)) {
         return animation;
     }
     
