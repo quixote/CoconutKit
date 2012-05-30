@@ -11,6 +11,7 @@
 #import "HLSLogger.h"
 #import "HLSRuntime.h"
 #import "HLSZeroingWeakRef.h"
+#import "NSObject+HLSExtensions.h"
 
 @interface HLSRestrictedInterfaceProxy ()
 
